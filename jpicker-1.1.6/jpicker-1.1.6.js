@@ -844,28 +844,14 @@
               hex = this.validateHex(hex);
               if (hex == '') return { r: null, g: null, b: null, a: null };
               var r = '00', g = '00', b = '00', a = '255';
+              while (hex.length < 6) {
+                hex = '0' + hex
+              }
               if (hex.length == 6) hex += 'ff';
-              if (hex.length > 6)
-              {
-                r = hex.substring(0, 2);
-                g = hex.substring(2, 4);
-                b = hex.substring(4, 6);
-                a = hex.substring(6, hex.length);
-              }
-              else
-              {
-                if (hex.length > 4)
-                {
-                  r = hex.substring(4, hex.length);
-                  hex = hex.substring(0, 4);
-                }
-                if (hex.length > 2)
-                {
-                  g = hex.substring(2, hex.length);
-                  hex = hex.substring(0, 2);
-                }
-                if (hex.length > 0) b = hex.substring(0, hex.length);
-              }
+              r = hex.substring(0, 2);
+              g = hex.substring(2, 4);
+              b = hex.substring(4, 6);
+              a = hex.substring(6, hex.length);
               return { r: this.hexToInt(r), g: this.hexToInt(g), b: this.hexToInt(b), a: this.hexToInt(a) };
             },
           validateHex:
